@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
 
+require('dotenv').config();
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
