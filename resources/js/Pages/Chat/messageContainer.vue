@@ -1,14 +1,30 @@
 <template>
-    <div v-for="message in messages" :key="message.id">
+    <chat-messages-layout>
+    <div class="flex flex-col" v-for="message in messages" :key="message.id">
+            <message-item
+                :class="checkSender(message.user.id) ? 'self-end' : 'self-start'"
+                :message="message"
+                :sender="checkSender(message.user.id)"
+            />
 
-        <message-item :message="message"/>
     </div>
+    </chat-messages-layout>
 </template>
 
 <script>
 import MessageItem from "./messageItem";
+import { usePage } from '@inertiajs/inertia-vue3'
+import ChatMessagesLayout from "../../Layouts/ChatMessagesLayout";
+
 export default {
-    components: {MessageItem},
-    props: ['messages']
+    components: {ChatMessagesLayout, MessageItem},
+    props: ['messages'],
+    methods: {
+        checkSender(id){
+            //if message.user.id === $page.props.user.id
+            //console.log($page.props.user);
+            return usePage().props.value.user.id === id;
+        }
+    }
 }
 </script>

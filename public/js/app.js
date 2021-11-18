@@ -20642,6 +20642,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _messageContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messageContainer */ "./resources/js/Pages/Chat/messageContainer.vue");
 /* harmony import */ var _inputMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inputMessage */ "./resources/js/Pages/Chat/inputMessage.vue");
 /* harmony import */ var _chatRoomSelection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chatRoomSelection */ "./resources/js/Pages/Chat/chatRoomSelection.vue");
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+
 
 
 
@@ -20677,8 +20679,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.currentRoom.id) {
         var vm = this;
         this.getMessages();
-        window.Echo["private"]('chat.' + this.currentRoom.id).listen('.message.new', function (e) {
-          console.log('listening');
+        window.Echo["private"]('chat.' + this.currentRoom.id).listen('.App\\Events\\NewChatMessage', function (e) {
           vm.getMessages();
         });
       }
@@ -20750,8 +20751,6 @@ __webpack_require__.r(__webpack_exports__);
 
           _this.$emit('messagesent');
         }
-
-        console.log(res);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -26159,9 +26158,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "536dc178df9cbeb58520",
+  key: "32dbacfa8ca5645de9e3",
   cluster: "ap2",
-  forceTLS: true
+  encrypted: true,
+  useTLS: true
 });
 
 /***/ }),

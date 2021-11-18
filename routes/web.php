@@ -30,7 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/chat', function () {
-    return Inertia::render('Chat/container');
+    return Inertia::render('Chat');
 })->name('chat');
 
 Route::middleware(['auth:sanctum'])->prefix('chat')->group(function () {

@@ -25,17 +25,15 @@ class ChatController extends Controller
 
     public function newMessage(Request $request, $roomId)
     {
-//        $newMessage = ChatMessage::create([
-//            'user_id' => Auth::id(),
-//            'chat_room_id' => $roomId,
-//            'message' => $request->message
-//        ]);
-        $newMessage = new ChatMessage();
-        $newMessage->user_id = Auth::id();
-        $newMessage->chat_room_id = $roomId;
-        $newMessage->message = $request->message;
-        $newMessage->save();
-        broadcast(new NewChatMessage($newMessage))->toOthers();
+        $newMessage = ChatMessage::create([
+            'user_id' => Auth::id(),
+            'chat_room_id' => $roomId,
+            'message' => $request->message
+        ]);
+        if($newMessage->save()){
+            broadcast(new NewChatMessage($newMessage));
+        }
         return $newMessage;
     }
+
 }
