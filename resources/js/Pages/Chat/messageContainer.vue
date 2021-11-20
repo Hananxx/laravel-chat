@@ -1,14 +1,13 @@
 <template>
-    <chat-messages-layout>
-    <div class="flex flex-col" v-for="message in messages" :key="message.id">
-            <message-item
-                :class="checkSender(message.user.id) ? 'self-end' : 'self-start'"
-                :message="message"
-                :sender="checkSender(message.user.id)"
-            />
-
-    </div>
-    </chat-messages-layout>
+        <chat-messages-layout>
+            <div class="flex flex-col" v-for="message in messages" :key="message.id">
+                <message-item
+                    :class="checkSender(message.user.id) ? 'self-end' : 'self-start'"
+                    :message="message"
+                    :sender="checkSender(message.user.id)"
+                />
+            </div>
+        </chat-messages-layout>
 </template>
 
 <script>

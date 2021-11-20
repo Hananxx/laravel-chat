@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen">
+    <div class="h-screen-1/2 overflow-scroll">
 <!--        <select v-model="selected"-->
 <!--                @change="$emit('roomchanged', selected)"-->
 <!--                class="border-none">-->
@@ -9,8 +9,8 @@
 <!--        </select>-->
         <div v-for="(room, index) in rooms"
              @click="selected = room, $emit('roomchanged', selected), console.log('smh')"
-             class="px-5 py-7 flex items-center border-b text-xl transition ease-in-out duration-75 hover:bg-gray-100 hover:cursor-pointer"
-             :class="room.id === selected.id ? 'bg-gray-50' : 'bg-white'"
+             class="p-10 flex items-center room-item text-xl transition ease-in-out duration-75 hover:bg-gray-100 hover:cursor-pointer"
+             :class="selected.id === room.id ? 'shadow-inner bg-gray-50' : ''"
              :key="index">
             <div :class="room.privacy === 'public' ? 'bg-orange-100 text-orange-700' : 'bg-purple-100 text-purple-700'"
                  class="w-10 h-10 hidden md:flex overflow-hidden rounded-full items-center justify-center">
@@ -20,8 +20,15 @@
                 {{room.name}}
             </h3>
         </div>
+
     </div>
 </template>
+
+<style scoped>
+    .room-item + .room-item{
+        border-top: 1px solid #e9eaed;
+    }
+</style>
 
 <script>
 export default {
