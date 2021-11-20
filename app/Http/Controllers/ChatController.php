@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\NewChatMessage;
 use App\Models\ChatMessage;
 use App\Models\ChatRoom;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class ChatController extends Controller
 {
     public function rooms(Request $request)
     {
-        return ChatRoom::all();
+        return  (ChatRoom::where('privacy', 'public')->get())->concat(User::find(Auth::id())->rooms);
     }
 
     public function messages(Request $request, $roomId)

@@ -15,7 +15,7 @@ class ChatRoomSeeder extends Seeder
     public function run()
     {
         ChatRoom::create([
-            'name' => 'General'
+            'name' => 'General',
         ]);
         ChatRoom::create([
             'name' => 'Tech'
