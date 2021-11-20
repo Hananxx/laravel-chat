@@ -2,22 +2,28 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                <chat-room-selection
-                    v-if="currentRoom.id"
-                    :rooms="chatRooms"
-                    :currentRoom="currentRoom"
-                    v-on:roomchanged="setRoom($event)"
-                />
+
             </h2>
         </template>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-2">
-                    <message-container :messages="messages"/>
-                    <input-message
-                        :room="currentRoom"
-                        v-on:messagesent="getMessages()"
-                    />
+            <div class="max-w-screen mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg grid grid-cols-3">
+                    <section class="bg-white border-r">
+                        <chat-room-selection
+                            v-if="currentRoom.id"
+                            :rooms="chatRooms"
+                            :currentRoom="currentRoom"
+                            v-on:roomchanged="setRoom($event)"
+                        />
+                    </section>
+                    <section class="col-span-2">
+                        <message-container :messages="messages"/>
+                        <input-message
+                            :room="currentRoom"
+                            v-on:messagesent="getMessages()"
+                        />
+                    </section>
+
                 </div>
             </div>
         </div>
