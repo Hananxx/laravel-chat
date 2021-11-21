@@ -9,11 +9,11 @@
 <!--        </select>-->
         <div v-for="(room, index) in rooms"
              @click="selected = room, $emit('roomchanged', selected), console.log('smh')"
-             class="p-10 flex items-center room-item text-xl transition ease-in-out duration-75 hover:bg-gray-100 hover:cursor-pointer"
+             class="p-10 flex items-center room-item text-xl transition ease-in-out duration-75 hover:bg-gray-100 cursor-pointer"
              :class="selected.id === room.id ? 'shadow-inner bg-gray-50' : ''"
              :key="index">
             <div :class="room.privacy === 'public' ? 'bg-orange-100 text-orange-700' : 'bg-purple-100 text-purple-700'"
-                 class="w-10 h-10 hidden md:flex overflow-hidden rounded-full items-center justify-center">
+                 class="w-10 h-10 flex overflow-hidden rounded-full items-center justify-center">
                 <span>{{room.name.substring(0, 2)}}</span>
             </div>
             <h3 :class="{'font-semibold': room.id === selected.id}" class="mx-3">
@@ -21,7 +21,20 @@
             </h3>
         </div>
 
-    </div>
+        <div @click="show = true" class="p-10 flex items-center room-item text-xl transition ease-in-out duration-75 hover:bg-gray-100 cursor-pointer">
+          <div class="w-10 h-10 flex overflow-hidden text-xl rounded-full items-center justify-center bg-purple-100 text-purple-500 border-2 border-dashed border-purple-500">
+            <span>+</span>
+          </div>
+          <h5 class="font-semibold mx-3">
+            Start a new chat
+          </h5>
+        </div>
+
+      <modal :show="show" v-on:close="show = false" >
+        <search-users-modal/>
+      </modal>
+      </div>
+
 </template>
 
 <style scoped>
@@ -31,13 +44,17 @@
 </style>
 
 <script>
+import Modal from "../../Components/Modal";
+import SearchUsersModal from "./SearchUsersModal";
 export default {
-    props: [
+  components: {SearchUsersModal, Modal},
+  props: [
         'currentRoom', 'rooms'
     ],
     data(){
         return {
-            selected: ''
+            selected: '',
+            show: false,
         }
     },
     created() {

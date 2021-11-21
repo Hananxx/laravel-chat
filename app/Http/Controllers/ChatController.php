@@ -13,7 +13,7 @@ class ChatController extends Controller
 {
     public function rooms(Request $request)
     {
-        return  (ChatRoom::where('privacy', 'public')->get())->concat(User::find(Auth::id())->rooms);
+        return (ChatRoom::where('privacy', 'public')->get())->concat(User::find(Auth::id())->rooms);
     }
 
     public function messages(Request $request, $roomId)

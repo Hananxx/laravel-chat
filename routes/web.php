@@ -25,13 +25,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     ]);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return Inertia::render('Dashboard');
+//})->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/chat', function () {
-    return Inertia::render('Chat');
-})->name('chat');
+//Route::middleware(['auth:sanctum', 'verified'])->get('/chat', function () {
+//    return Inertia::render('Chat');
+//})->name('chat');
 
 Route::middleware(['auth:sanctum'])->prefix('chat')->group(function () {
     Route::get('rooms', [ChatController::class, 'rooms']);
@@ -39,3 +39,4 @@ Route::middleware(['auth:sanctum'])->prefix('chat')->group(function () {
     Route::post('room/{roomId}/message', [ChatController::class, 'newMessage']);
 });
 
+Route::middleware(['auth'])->get('/user', [\App\Http\Controllers\UserController::class, 'search']);
