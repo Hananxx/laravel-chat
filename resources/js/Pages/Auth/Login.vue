@@ -30,7 +30,8 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-end space-x-2 mt-4">
+
                 <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
                     Forgot your password?
                 </Link>
@@ -39,6 +40,9 @@
                     Log in
                 </jet-button>
             </div>
+            <Link :href="route('register')" class="ml-4 text-sm text-gray-700 underline">
+                Register
+            </Link>
         </form>
     </jet-authentication-card>
 </template>
