@@ -25,7 +25,7 @@
                             <message-container :messages="messages"/>
                             <input-message
                                 :room="currentRoom"
-                                v-on:messagesent="getMessages()"
+                                v-on:messagesent="getMessages(), resetScrollbar()"
                             />
                         </template>
                     </chat-app-layout>
@@ -124,6 +124,10 @@ export default {
                 }).catch(err => {
                 console.log(err);
             })
+        },
+        resetScrollbar(){
+            let c = document.getElementById('chat-container');
+            c.scrollTop = 0;
         }
     }
 }
