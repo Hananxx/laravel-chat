@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\InvitationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,6 +38,15 @@ Route::middleware(['auth:sanctum'])->prefix('chat')->group(function () {
     Route::get('rooms', [ChatController::class, 'rooms']);
     Route::get('room/{roomId}/messages', [ChatController::class, 'messages']);
     Route::post('room/{roomId}/message', [ChatController::class, 'newMessage']);
+
+    Route::post('/new-room', [ChatController::class, 'startNewChatRoom']);
+});
+
+Route::middleware(['auth:sanctum'])->prefix('invitation')->group(function () {
+    Route::get('/', [InvitationController::class, 'getPendingInvitaions']);
+    Route::post('/create', [InvitationController::class, 'createInvitation']);
+    Route::post('/accept', [InvitationController::class, 'acceptInvitation']);
+
 });
 
 Route::middleware(['auth'])->get('/user', [\App\Http\Controllers\UserController::class, 'search']);

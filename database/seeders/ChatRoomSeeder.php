@@ -16,6 +16,7 @@ class ChatRoomSeeder extends Seeder
     {
         ChatRoom::create([
             'name' => 'General',
+            'privacy' => 'public'
         ]);
         ChatRoom::create([
             'name' => 'Tech'

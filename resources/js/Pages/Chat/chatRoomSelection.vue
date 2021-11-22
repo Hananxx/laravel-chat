@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen-1/2 overflow-scroll">
+    <div class="h-screen-3/5 overflow-scroll">
 <!--        <select v-model="selected"-->
 <!--                @change="$emit('roomchanged', selected)"-->
 <!--                class="border-none">-->
@@ -7,7 +7,17 @@
 <!--                {{room.name}}-->
 <!--            </option>-->
 <!--        </select>-->
-        <div v-for="(room, index) in rooms"
+
+      <div @click="show = true" class="p-10 flex items-center room-item text-xl transition ease-in-out duration-75 hover:bg-gray-100 cursor-pointer">
+        <div class="w-10 h-10 flex overflow-hidden text-xl rounded-full items-center justify-center bg-purple-100 text-purple-500 border-2 border-dashed border-purple-500">
+          <span>+</span>
+        </div>
+        <h5 class="font-semibold mx-3">
+          Start a new chat
+        </h5>
+      </div>
+
+      <div v-for="(room, index) in rooms"
              @click="selected = room, $emit('roomchanged', selected), console.log('smh')"
              class="p-10 flex items-center room-item text-xl transition ease-in-out duration-75 hover:bg-gray-100 cursor-pointer"
              :class="selected.id === room.id ? 'shadow-inner bg-gray-50' : ''"
@@ -21,17 +31,9 @@
             </h3>
         </div>
 
-        <div @click="show = true" class="p-10 flex items-center room-item text-xl transition ease-in-out duration-75 hover:bg-gray-100 cursor-pointer">
-          <div class="w-10 h-10 flex overflow-hidden text-xl rounded-full items-center justify-center bg-purple-100 text-purple-500 border-2 border-dashed border-purple-500">
-            <span>+</span>
-          </div>
-          <h5 class="font-semibold mx-3">
-            Start a new chat
-          </h5>
-        </div>
 
       <modal :show="show" v-on:close="show = false" >
-        <search-users-modal/>
+        <search-users-modal v-on:invitationcreated="show = false"/>
       </modal>
       </div>
 

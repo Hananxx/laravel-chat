@@ -16,6 +16,7 @@ module.exports = {
             colors: {
                 blueGray: colors.blueGray,
                 orange: colors.orange,
+                fuchsia: colors.fuchsia,
                 purple: {
                     '450' : '#9c80ee'
                 },
@@ -25,7 +26,9 @@ module.exports = {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
             height: {
+                'screen-1/5' : '13vh',
                 'screen-1/2': '50vh',
+                'screen-3/5' : '62vh',
                 'screen-3/4': '75vh',
                 'screen-4/5': '80vh',
             },
@@ -35,6 +38,7 @@ module.exports = {
             },
             dropShadow: {
                 'purple': '0px 1px 2px rgba(156,128,238,0.32)',
+                'blue': '0px 1px 2px rgba(96,165,250,0.2)',
             }
         },
     },

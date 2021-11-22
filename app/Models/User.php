@@ -66,4 +66,9 @@ class User extends Authenticatable
     public function rooms(){
         return $this->belongsToMany(ChatRoom::class);
     }
+
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class, 'invitee_id');
+    }
 }

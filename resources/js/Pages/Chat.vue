@@ -8,7 +8,14 @@
                                     :rooms="chatRooms"
                                     :currentRoom="currentRoom"
                                     v-on:roomchanged="setRoom($event)"
+                                    v-on:roomcreated="getRooms()"
                                 />
+                                <div>
+                                    <h3 class="text-center border-b p-3">Chat Rooms Invitations</h3>
+                                    <chat-room-invitations
+                                        v-on:invitationsupdated="getRooms()"
+                                    />
+                                </div>
                             </div>
 
                         </template>
@@ -21,7 +28,19 @@
                                     v-on:roomchanged="setRoom($event)"
                                 />
                         </template>
+
+                        <template v-slot:room-invitations>
+                            <div>
+                                <h3 class="text-center border-b p-3">Chat Rooms Invitations</h3>
+                                <chat-room-invitations
+                                v-on:invitationsupdated="getRooms()"
+                                />
+                            </div>
+
+                        </template>
+
                         <template v-slot:chat>
+                            <h3 class="text-center border-b pb-1 md:p-2">{{ currentRoom.name }}</h3>
                             <message-container :messages="messages"/>
                             <input-message
                                 :room="currentRoom"
@@ -52,20 +71,18 @@
 
 <!--                    </div>-->
 </template>
-<style>
-    /*body{*/
-    /*    overflow: hidden;*/
-    /*}*/
-</style>
+
 <script>
 import AppLayout from "../Layouts/AppLayout";
 import MessageContainer from "./Chat/messageContainer";
 import InputMessage from "./Chat/inputMessage";
 import ChatRoomSelection from "./Chat/chatRoomSelection";
 import ChatAppLayout from "../Layouts/ChatAppLayout";
+import ChatRoomInvitations from "./Chat/chatRoomInvitations";
 
 export default {
     components: {
+        ChatRoomInvitations,
         ChatAppLayout,
         ChatRoomSelection,
         InputMessage,
@@ -111,7 +128,7 @@ export default {
                     this.setRoom(this.chatRooms[0]);
                     this.getMessages();
                 }).catch(err => {
-                console.log(err)
+                    console.log(err)
             })
         },
         setRoom(room){

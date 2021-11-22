@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <main>
         <nav class="p-2 lg:mb-4">
             <div class="mx-auto max-w-screen-2xl flex justify-between items-center px-2 md:px-0">
                 <svg v-if="!showChatRoomsMenu" @click="showChatRoomsMenu = true"
@@ -26,17 +26,29 @@
 
         <slot v-if="showChatRoomsMenu" name="chat-rooms-menu"/>
 
-        <section class=" mx-auto max-w-screen-2xl max-h-screen">
+        <section class="mx-auto max-w-screen-2xl max-h-screen">
             <div class="grid md:grid-cols-3 gap-7">
-                <section class="bg-white rounded-xl shadow-xl h-2/3 hidden md:block">
-                    <slot name="room-selection"/>
+                <section class="hidden md:block space-y-9">
+                    <div class="bg-white rounded-xl shadow-xl h-3/4">
+                        <slot name="room-selection"/>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-xl h-1/5">
+                        <slot name="room-invitations"/>
+                    </div>
                 </section>
                 <section class="col-span-2 p-2 bg-white md:rounded-xl md:shadow-xl h-full md:h-11/12 flex flex-col justify-between">
                    <slot name="chat"/>
                 </section>
             </div>
         </section>
-    </div>
+        <footer class="max-w-screen-xl mx-auto mt-12 text-center hidden md:block text-gray-500">
+            <p>
+                Made by @hananxx
+                <span class="text-red-400">♥︎</span>
+            </p>
+        </footer>
+    </main>
 </template>
 
 <script>
