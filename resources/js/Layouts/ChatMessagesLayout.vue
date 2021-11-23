@@ -1,5 +1,5 @@
 <template>
-    <div class="overflow-scroll flex flex-col-reverse h-screen-4/5 border-b">
+    <div id="chat-container" class="overflow-scroll flex flex-col-reverse h-screen-4/5 border-b">
         <div class="msg-container p-2">
             <slot/>
         </div>
@@ -14,6 +14,9 @@
 
 <script>
     export default {
-
+        mounted() {
+            let c = document.getElementById('chat-container');
+            c.scrollTop = 0;
+        }
     }
 </script>

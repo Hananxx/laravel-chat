@@ -20,8 +20,6 @@ export default {
     props: ['messages'],
     methods: {
         checkSender(id){
-            //if message.user.id === $page.props.user.id
-            //console.log($page.props.user);
             return usePage().props.value.user.id === id;
         }
     }
