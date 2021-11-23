@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InvitationRequest;
 use App\Models\ChatRoom;
 use App\Models\Invitation;
 use App\Models\User;
@@ -20,7 +21,8 @@ class InvitationController extends Controller
     {
         return Invitation::with('inviter')
             ->where('invitee_id', Auth::id())
-            ->where('status', 'pending')->get();
+            ->where('status', 'pending')
+            ->get();
     }
 
     /**
@@ -28,11 +30,11 @@ class InvitationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createInvitation(Request $request)
+    public function createInvitation(InvitationRequest $request)
     {
         return Invitation::create([
             'inviter_id' => Auth::id(),
-            'invitee_id' => $request->inviteeId,
+            'invitee_id' => $request->invitee_id,
             'status' => 'pending'
         ]);
     }

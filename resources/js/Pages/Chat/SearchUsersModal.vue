@@ -62,12 +62,15 @@
             },
             createChatRoom(id){
                 console.log('start chat room '+ id);
-                axios.post('/invitation/create', { inviteeId: id })
+                axios.post('/invitation/create', { invitee_id: id })
                 .then(res => {
                     console.log(res)
                     this.$emit('invitationcreated')
                 }).catch(err => {
-                    console.log(err)
+                    for( var e in err.response.data.errors)
+                    {
+                        console.log(err.response.data.errors[e][0])
+                    }
                 });
             }
         }
