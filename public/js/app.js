@@ -20804,13 +20804,15 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log('start chat room ' + id);
       axios.post('/invitation/create', {
-        inviteeId: id
+        invitee_id: id
       }).then(function (res) {
         console.log(res);
 
         _this2.$emit('invitationcreated');
       })["catch"](function (err) {
-        console.log(err);
+        for (var e in err.response.data.errors) {
+          console.log(err.response.data.errors[e][0]);
+        }
       });
     }
   }
