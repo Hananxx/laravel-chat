@@ -1,7 +1,7 @@
 <template>
                     <chat-app-layout>
                         <template v-slot:chat-rooms-menu>
-                            <div class="absolute w-screen h-screen bg-white z-50">
+                            <div class="absolute block md:hidden w-screen h-screen bg-white z-50">
                                 <h3 class="text-center border-b p-3">Available Chat Rooms</h3>
                                 <chat-room-selection
                                     v-if="currentRoom.id"
@@ -44,7 +44,7 @@
                             <message-container :messages="messages"/>
                             <input-message
                                 :room="currentRoom"
-                                v-on:messagesent="getMessages(), resetScrollbar()"
+                                v-on:messagesent="getMessages(), resetScrollbar(),  toast.info('Your message has been sent')"
                             />
                         </template>
                     </chat-app-layout>
@@ -79,6 +79,7 @@ import InputMessage from "./Chat/inputMessage";
 import ChatRoomSelection from "./Chat/chatRoomSelection";
 import ChatAppLayout from "../Layouts/ChatAppLayout";
 import ChatRoomInvitations from "./Chat/chatRoomInvitations";
+import {useToast} from "vue-toastification";
 
 export default {
     components: {
@@ -88,6 +89,10 @@ export default {
         InputMessage,
         MessageContainer,
         AppLayout
+    },
+    setup(){
+        const toast = useToast();
+        return { toast }
     },
     data() {
         return {
@@ -115,6 +120,7 @@ export default {
                 window.Echo.private('chat.'+this.currentRoom.id)
                     .listen('.App\\Events\\NewChatMessage', (e) => {
                         vm.getMessages();
+                        vm.toast.info('A message has been received');
                     })
             }
         },

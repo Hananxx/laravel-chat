@@ -43,7 +43,13 @@
 </style>
 
 <script>
+import { useToast } from "vue-toastification";
+
     export default {
+        setup(){
+            const toast = useToast();
+            return { toast }
+        },
         data(){
             return {
                 searchTerm: '',
@@ -61,15 +67,14 @@
                     });
             },
             createChatRoom(id){
-                console.log('start chat room '+ id);
                 axios.post('/invitation/create', { invitee_id: id })
                 .then(res => {
-                    console.log(res)
+                    this.toast.success('An invitiation has been sent');
                     this.$emit('invitationcreated')
                 }).catch(err => {
                     for( var e in err.response.data.errors)
                     {
-                        console.log(err.response.data.errors[e][0])
+                        this.toast.error(err.response.data.errors[e][0]);
                     }
                 });
             }

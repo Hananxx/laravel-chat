@@ -12,11 +12,9 @@ class UniqueCompositeKeys implements Rule
      *
      * @return void
      */
-    //public $id;
     public function __construct()
     {
-       // $this->id = $id;
-        //dd(12);
+        //
     }
 
     /**
@@ -39,6 +37,6 @@ class UniqueCompositeKeys implements Rule
      */
     public function message()
     {
-        return 'an Invitation already sent to this user.';
+        return 'An invitation has already been sent to this user.';
     }
 }
