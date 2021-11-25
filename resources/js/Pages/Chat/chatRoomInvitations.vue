@@ -1,6 +1,5 @@
 <template>
     <div class="h-screen-1/5 overflow-scroll">
-
         <div v-for="(invite, index) in invitations" :key="index"
              class="invitation-item p-9 flex items-center justify-between text-xl transition ease-in-out duration-75 hover:bg-gray-100">
             <div class="mx-3">

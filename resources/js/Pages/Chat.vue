@@ -2,10 +2,9 @@
     <chat-app-layout>
         <template v-slot:room-menu-toggle>
             <svg v-if="!showChatRoomsMenu" @click="showChatRoomsMenu = true"
-                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:hidden cursor-pointer" viewBox="0 0 20 20" fill="currentColor" >
-                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+                xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:hidden cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
-
             <svg v-if="showChatRoomsMenu" @click="showChatRoomsMenu = false"
                  xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:hidden cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -23,7 +22,7 @@
                     v-on:roomcreated="getRooms()"
                 />
                 <div>
-                    <h3 class="text-center border-b p-3">Chat Rooms Invitations</h3>
+                    <h3 class="text-center border p-3">Chat Rooms Invitations</h3>
                     <chat-room-invitations
                         v-on:invitationsupdated="getRooms()"
                     />
@@ -86,7 +85,8 @@ export default {
             currentRoom: Array,
             messages: Array,
             menuShown: true,
-            showChatRoomsMenu: false
+            showChatRoomsMenu: false,
+            profileToggle: false,
         }
     },
     created() {
@@ -134,7 +134,7 @@ export default {
                 .then(res => {
                     this.messages = res.data;
                 }).catch(err => {
-                console.log(err);
+                    console.log(err);
             })
         },
         resetScrollbar(){
