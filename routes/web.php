@@ -43,9 +43,10 @@ Route::middleware(['auth:sanctum'])->prefix('chat')->group(function () {
 });
 
 Route::middleware(['auth:sanctum'])->prefix('invitation')->group(function () {
-    Route::get('/', [InvitationController::class, 'getPendingInvitaions']);
+    Route::get('/', [InvitationController::class, 'getPendingInvitations']);
     Route::post('/create', [InvitationController::class, 'createInvitation']);
     Route::post('/accept', [InvitationController::class, 'acceptInvitation']);
+    Route::post('/reject', [InvitationController::class, 'rejectInvitation']);
 
 });
 

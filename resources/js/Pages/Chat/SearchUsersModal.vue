@@ -58,13 +58,14 @@ import { useToast } from "vue-toastification";
         },
         methods: {
             search(){
-                axios.get('/user', { params: { searchTerm: this.searchTerm } })
-                    .then(res => {
-                        this.searchResults = res.data;
-                        console.log(res.data)
-                    }).catch(err => {
+                if(this.searchTerm.length > 1){
+                    axios.get('/user', { params: { searchTerm: this.searchTerm } })
+                        .then(res => {
+                            this.searchResults = res.data;
+                        }).catch(err => {
                         console.log(err)
                     });
+                }
             },
             createChatRoom(id){
                 axios.post('/invitation/create', { invitee_id: id })

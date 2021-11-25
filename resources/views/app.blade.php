@@ -16,11 +16,11 @@
         @routes
         <script src="{{ mix('js/app.js') }}" defer></script>
         <style>
-            @media (max-width: 768px) {
-                body {
-                    overflow: hidden;
-                }
-            }
+            /*@media (max-width: 768px) {*/
+            /*    body {*/
+            /*        overflow: hidden;*/
+            /*    }*/
+            /*}*/
         </style>
     </head>
     <body class="font-sans antialiased bg-gradient-to-b from-gray-50 to-gray-100 md:pb-5">

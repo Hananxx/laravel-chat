@@ -27,7 +27,8 @@ class UniqueCompositeKeys implements Rule
     public function passes($attribute, $value)
     {
         $invites = Invitation::where('invitee_id', $value)->where('inviter_id',auth()->id())->get();
-        return count($invites) == 0;
+        $inverse = Invitation::where('inviter_id', $value)->where('invitee_id',auth()->id())->get();
+        return count($invites) == 0 && count($inverse) == 0;
     }
 
     /**

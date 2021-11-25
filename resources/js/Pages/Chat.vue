@@ -1,75 +1,61 @@
 <template>
-                    <chat-app-layout>
-                        <template v-slot:chat-rooms-menu>
-                            <div class="absolute block md:hidden w-screen h-screen bg-white z-50">
-                                <h3 class="text-center border-b p-3">Available Chat Rooms</h3>
-                                <chat-room-selection
-                                    v-if="currentRoom.id"
-                                    :rooms="chatRooms"
-                                    :currentRoom="currentRoom"
-                                    v-on:roomchanged="setRoom($event)"
-                                    v-on:roomcreated="getRooms()"
-                                />
-                                <div>
-                                    <h3 class="text-center border-b p-3">Chat Rooms Invitations</h3>
-                                    <chat-room-invitations
-                                        v-on:invitationsupdated="getRooms()"
-                                    />
-                                </div>
-                            </div>
+    <chat-app-layout>
+        <template v-slot:room-menu-toggle>
+            <svg v-if="!showChatRoomsMenu" @click="showChatRoomsMenu = true"
+                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:hidden cursor-pointer" viewBox="0 0 20 20" fill="currentColor" >
+                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+            </svg>
 
-                        </template>
-                        <template v-slot:room-selection>
-                                <h3 class="text-center border-b p-3">Available Chat Rooms</h3>
-                                <chat-room-selection
-                                    v-if="currentRoom.id"
-                                    :rooms="chatRooms"
-                                    :currentRoom="currentRoom"
-                                    v-on:roomchanged="setRoom($event)"
-                                />
-                        </template>
+            <svg v-if="showChatRoomsMenu" @click="showChatRoomsMenu = false"
+                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:hidden cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </template>
 
-                        <template v-slot:room-invitations>
-                            <div>
-                                <h3 class="text-center border-b p-3">Chat Rooms Invitations</h3>
-                                <chat-room-invitations
-                                v-on:invitationsupdated="getRooms()"
-                                />
-                            </div>
-
-                        </template>
-
-                        <template v-slot:chat>
-                            <h3 class="text-center border-b pb-1 md:p-2">{{ currentRoom.name }}</h3>
-                            <message-container :messages="messages"/>
-                            <input-message
-                                :room="currentRoom"
-                                v-on:messagesent="getMessages(), resetScrollbar(),  toast.info('Your message has been sent')"
-                            />
-                        </template>
-                    </chat-app-layout>
-
-
-
-<!--                    <div class="grid grid-cols-3 gap-7 ">-->
-<!--                        <section class="bg-white rounded-xl shadow-xl h-2/3 ">-->
-<!--                            <h3 class="text-center border-b p-3">Available Chat Rooms</h3>-->
-<!--                            <chat-room-selection-->
-<!--                                v-if="currentRoom.id"-->
-<!--                                :rooms="chatRooms"-->
-<!--                                :currentRoom="currentRoom"-->
-<!--                                v-on:roomchanged="setRoom($event)"-->
-<!--                            />-->
-<!--                        </section>-->
-<!--                        <section class="col-span-2 p-2 bg-white rounded-xl shadow-xl h-4/5 flex flex-col justify-between">-->
-<!--                            <message-container :messages="messages"/>-->
-<!--                            <input-message-->
-<!--                                :room="currentRoom"-->
-<!--                                v-on:messagesent="getMessages()"-->
-<!--                            />-->
-<!--                        </section>-->
-
-<!--                    </div>-->
+        <template v-slot:chat-rooms-menu v-if="showChatRoomsMenu">
+            <div class="absolute block md:hidden w-screen h-screen bg-white z-50">
+                <h3 class="text-center border-b p-3">Available Chat Rooms</h3>
+                <chat-room-selection
+                    v-if="currentRoom.id"
+                    :rooms="chatRooms"
+                    :currentRoom="currentRoom"
+                    v-on:roomchanged="setRoom($event), showChatRoomsMenu = false"
+                    v-on:roomcreated="getRooms()"
+                />
+                <div>
+                    <h3 class="text-center border-b p-3">Chat Rooms Invitations</h3>
+                    <chat-room-invitations
+                        v-on:invitationsupdated="getRooms()"
+                    />
+                </div>
+            </div>
+        </template>
+        <template v-slot:room-selection>
+            <h3 class="text-center border-b p-3">Available Chat Rooms</h3>
+            <chat-room-selection
+                v-if="currentRoom.id"
+                :rooms="chatRooms"
+                :currentRoom="currentRoom"
+                v-on:roomchanged="setRoom($event)"
+            />
+        </template>
+        <template v-slot:room-invitations>
+            <div>
+                <h3 class="text-center border-b p-3">Chat Rooms Invitations</h3>
+                <chat-room-invitations
+                    v-on:invitationsupdated="getRooms()"
+                />
+            </div>
+        </template>
+        <template v-slot:chat>
+            <h3 class="text-center border-b pb-1 md:p-2">{{ currentRoom.name }}</h3>
+            <message-container :messages="messages"/>
+            <input-message
+                :room="currentRoom"
+                v-on:messagesent="getMessages(), resetScrollbar(),  toast.info('Your message has been sent')"
+            />
+        </template>
+    </chat-app-layout>
 </template>
 
 <script>
@@ -98,7 +84,9 @@ export default {
         return {
             chatRooms: Array,
             currentRoom: Array,
-            messages: Array
+            messages: Array,
+            menuShown: true,
+            showChatRoomsMenu: false
         }
     },
     created() {
@@ -123,6 +111,7 @@ export default {
                         vm.toast.info('A message has been received');
                     })
             }
+
         },
         disconnect(room){
             window.Echo.leave('chat.'+room.id);
