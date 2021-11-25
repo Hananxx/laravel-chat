@@ -67,8 +67,13 @@ class User extends Authenticatable
         return $this->belongsToMany(ChatRoom::class);
     }
 
-    public function invitations()
+    public function receivedInvitations()
     {
         return $this->hasMany(Invitation::class, 'invitee_id');
+    }
+
+    public function sentInvitations()
+    {
+        return $this->hasMany(Invitation::class, 'inviter_id');
     }
 }

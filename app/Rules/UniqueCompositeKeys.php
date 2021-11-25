@@ -12,11 +12,9 @@ class UniqueCompositeKeys implements Rule
      *
      * @return void
      */
-    //public $id;
     public function __construct()
     {
-       // $this->id = $id;
-        //dd(12);
+        //
     }
 
     /**
@@ -29,7 +27,8 @@ class UniqueCompositeKeys implements Rule
     public function passes($attribute, $value)
     {
         $invites = Invitation::where('invitee_id', $value)->where('inviter_id',auth()->id())->get();
-        return count($invites) == 0;
+        $inverse = Invitation::where('inviter_id', $value)->where('invitee_id',auth()->id())->get();
+        return count($invites) == 0 && count($inverse) == 0;
     }
 
     /**
@@ -39,6 +38,6 @@ class UniqueCompositeKeys implements Rule
      */
     public function message()
     {
-        return 'an Invitation already sent to this user.';
+        return 'An invitation has already been sent to this user.';
     }
 }

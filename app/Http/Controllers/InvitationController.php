@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewInvitation;
 use App\Http\Requests\InvitationRequest;
 use App\Models\ChatRoom;
 use App\Models\Invitation;
@@ -17,7 +18,7 @@ class InvitationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPendingInvitaions(Request $request)
+    public function getPendingInvitations(Request $request)
     {
         return Invitation::with('inviter')
             ->where('invitee_id', Auth::id())
@@ -32,11 +33,16 @@ class InvitationController extends Controller
      */
     public function createInvitation(InvitationRequest $request)
     {
-        return Invitation::create([
+        $newInvitation =  Invitation::create([
             'inviter_id' => Auth::id(),
             'invitee_id' => $request->invitee_id,
             'status' => 'pending'
         ]);
+        if($newInvitation->save()) {
+            broadcast(new NewInvitation($newInvitation))->toOthers();
+        }
+
+        return $newInvitation;
     }
 
     /**
@@ -74,48 +80,8 @@ class InvitationController extends Controller
         return 'room created!';
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Invitation  $invitation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Invitation $invitation)
+    public function rejectInvitation(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Invitation  $invitation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Invitation $invitation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invitation  $invitation
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Invitation $invitation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Invitation  $invitation
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Invitation $invitation)
-    {
-        //
+        return Invitation::find($request->id)->delete();
     }
 }

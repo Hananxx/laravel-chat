@@ -18,8 +18,5 @@ class ChatRoomSeeder extends Seeder
             'name' => 'General',
             'privacy' => 'public'
         ]);
-        ChatRoom::create([
-            'name' => 'Tech'
-        ]);
     }
 }
