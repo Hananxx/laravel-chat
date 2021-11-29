@@ -53,9 +53,7 @@
             </p>
         </footer>
         <modal :show="userProfileToggle" v-on:close="userProfileToggle = false">
-            <div class="flex flex-col p-3 w-full">
-                hi }}
-            </div>
+            <user-profile/>
         </modal>
     </div>
 </template>
@@ -63,8 +61,9 @@
 <script>
     import Logo from "../Components/Logo";
     import Modal from "../Components/Modal";
+    import UserProfile from "../Pages/Profile/UserProfile";
     export default {
-        components: {Modal, Logo},
+        components: {UserProfile, Modal, Logo},
         data(){
             return {
                 userProfileToggle: false,

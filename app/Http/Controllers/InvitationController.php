@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\AcceptInvitation;
 use App\Events\NewInvitation;
 use App\Http\Requests\InvitationRequest;
 use App\Models\ChatRoom;
 use App\Models\Invitation;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -53,31 +53,7 @@ class InvitationController extends Controller
      */
     public function acceptInvitation(Request $request)
     {
-        //$request status accept or reject
-        $invitation = Invitation::find($request->inviteId);
-        $room =  ChatRoom::create([
-            'name' => $invitation->inviter->name.', '.$invitation->invitee->name,
-            'privacy' => 'private'
-        ]);
-        if($room->save())
-        {
-            //inviter pivot record
-            DB::table('chat_room_user')->insert([
-                'user_id' => $invitation->inviter->id,
-                'chat_room_id' => $room->id,
-            ]);
-
-            //invitee pivot record
-            DB::table('chat_room_user')->insert([
-                'user_id' => $invitation->invitee->id,
-                'chat_room_id' => $room->id,
-            ]);
-
-            $invitation->update([
-                'status' => 'accepted'
-            ]);
-        }
-        return 'room created!';
+        return AcceptInvitation::run(Invitation::find($request->inviteId));
     }
 
     public function rejectInvitation(Request $request)

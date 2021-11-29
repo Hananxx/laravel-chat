@@ -38,37 +38,4 @@ class ChatController extends Controller
         return $newMessage;
     }
 
-    public function startNewChatRoom(Request $request)
-    {
-//        //create a new chat room
-//        $newRoom =  ChatRoom::create([
-//            'name' => 'tfoeifih',
-//            'privacy' => 'private'
-//        ]);
-//
-//        if($newRoom->save()){
-//            //inviter pivot record
-//            $userId = Auth::id();
-//            DB::table('chat_room_user')->insert([
-//                'user_id' => $userId,
-//                'chat_room_id' => $newRoom->id,
-//            ]);
-//
-//            //invited user pivot record
-//            DB::table('chat_room_user')->insert([
-//                'user_id' => $request->id,
-//                'chat_room_id' => $newRoom->id,
-//            ]);
-//        }
-        return 'done!';
-    }
-
-    public function getPendingInvites(Request $request){
-        $u = User::find(Auth::id());
-        $u->rooms->pluck('pivot')->where('accepted',0);
-        //$u->rooms->pluck('pivot')->where('accepted',1)
-        //->concat()
-
-
-    }
 }

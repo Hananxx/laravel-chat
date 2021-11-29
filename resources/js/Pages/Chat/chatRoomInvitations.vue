@@ -34,9 +34,6 @@
         <div v-if="invitations.length < 1" class="p-9 text-gray-600 text-center">
                    No pending invitations...
         </div>
-<!--        <modal :show="show" v-on:close="show = false" >-->
-<!--            <search-users-modal v-on:newroomcreated="$emit('roomcreated'), show = false"/>-->
-<!--        </modal>-->
     </div>
 
 </template>
@@ -53,7 +50,6 @@
     export default {
         setup(){
             const toast = useToast();
-            //this.connect();
             return { toast }
         },
         data(){

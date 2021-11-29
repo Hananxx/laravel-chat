@@ -1,4 +1,4 @@
-<template>
+<template title="chat">
     <chat-app-layout>
         <template v-slot:room-menu-toggle>
             <svg v-if="!showChatRoomsMenu" @click="showChatRoomsMenu = true"
