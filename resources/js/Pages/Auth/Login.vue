@@ -2,8 +2,8 @@
     <Head title="Log in" />
 
     <jet-authentication-card>
-        <template #logo>
-            <jet-authentication-card-logo />
+        <template #logo >
+            <logo/>
         </template>
 
         <jet-validation-errors class="mb-4" />
@@ -32,17 +32,15 @@
 
             <div class="flex items-center justify-end space-x-2 mt-4">
 
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Forgot your password?
+                <Link :href="route('register')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                  Register now
                 </Link>
 
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-button class="ml-5" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </jet-button>
+
             </div>
-            <Link :href="route('register')" class="ml-4 text-sm text-gray-700 underline">
-                Register
-            </Link>
         </form>
     </jet-authentication-card>
 </template>
@@ -57,9 +55,11 @@
     import JetLabel from '@/Components/Label.vue'
     import JetValidationErrors from '@/Components/ValidationErrors.vue'
     import { Head, Link } from '@inertiajs/inertia-vue3';
+    import Logo from "../../Components/Logo";
 
     export default defineComponent({
         components: {
+            Logo,
             Head,
             JetAuthenticationCard,
             JetAuthenticationCardLogo,

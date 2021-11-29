@@ -1,6 +1,5 @@
 <template>
     <div class="flex space-x-3 p-5">
-
         <input type="text"
                v-model="message"
                @keyup.enter="sendMessage()"
@@ -16,7 +15,6 @@
            <span>Send</span>
         </button>
     </div>
-
 </template>
 
 <script>

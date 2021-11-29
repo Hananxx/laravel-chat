@@ -1,6 +1,5 @@
 <template>
     <div class="h-screen-1/5 overflow-scroll">
-
         <div v-for="(invite, index) in invitations" :key="index"
              class="invitation-item p-9 flex items-center justify-between text-xl transition ease-in-out duration-75 hover:bg-gray-100">
             <div class="mx-3">
@@ -35,9 +34,6 @@
         <div v-if="invitations.length < 1" class="p-9 text-gray-600 text-center">
                    No pending invitations...
         </div>
-<!--        <modal :show="show" v-on:close="show = false" >-->
-<!--            <search-users-modal v-on:newroomcreated="$emit('roomcreated'), show = false"/>-->
-<!--        </modal>-->
     </div>
 
 </template>
@@ -54,7 +50,6 @@
     export default {
         setup(){
             const toast = useToast();
-            //this.connect();
             return { toast }
         },
         data(){

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Invitation;
 use App\Rules\UniqueCompositeKeys;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,8 +24,6 @@ class InvitationRequest extends FormRequest
      */
     public function rules()
     {
-
-        //$invites = Invitation::where('invitee_id', request()->inviteeId)->where('inviter_id',auth()->id())->get();
         return [
             'invitee_id' => ['required', new UniqueCompositeKeys]
         ];

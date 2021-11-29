@@ -26,9 +26,15 @@ class UniqueCompositeKeys implements Rule
      */
     public function passes($attribute, $value)
     {
-        $invites = Invitation::where('invitee_id', $value)->where('inviter_id',auth()->id())->get();
-        $inverse = Invitation::where('inviter_id', $value)->where('invitee_id',auth()->id())->get();
-        return count($invites) == 0 && count($inverse) == 0;
+        $userId = auth()->id();
+
+        $invites = Invitation::where('invitee_id', $value)
+                    ->where('inviter_id', $userId)->first();
+
+        $inverse = Invitation::where('inviter_id', $value)
+                    ->where('invitee_id', $userId)->first();
+
+        return !$invites && !$inverse;
     }
 
     /**
@@ -38,6 +44,6 @@ class UniqueCompositeKeys implements Rule
      */
     public function message()
     {
-        return 'An invitation has already been sent to this user.';
+        return 'An invitation from/to this user already exists.';
     }
 }

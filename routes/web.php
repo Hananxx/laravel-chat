@@ -38,7 +38,6 @@ Route::middleware(['auth:sanctum'])->prefix('chat')->group(function () {
     Route::get('rooms', [ChatController::class, 'rooms']);
     Route::get('room/{roomId}/messages', [ChatController::class, 'messages']);
     Route::post('room/{roomId}/message', [ChatController::class, 'newMessage']);
-
     Route::post('/new-room', [ChatController::class, 'startNewChatRoom']);
 });
 
@@ -50,4 +49,4 @@ Route::middleware(['auth:sanctum'])->prefix('invitation')->group(function () {
 
 });
 
-Route::middleware(['auth'])->get('/user', [\App\Http\Controllers\UserController::class, 'search']);
+Route::middleware(['auth:sanctum'])->get('/user', [\App\Http\Controllers\UserController::class, 'search']);
