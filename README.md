@@ -18,9 +18,10 @@
 🟣 Real-time messaging events and invitations.
 <br/>
 🟣 Invite other users to new chat rooms.
+<br/>
+🟣 Real-time notifications and alerts.
 
 ## Getting Started 🚀
-
 ### Installation:
 1. Clone Repo.
 2. Install composer dependencies 
