@@ -1,5 +1,5 @@
 <p align="center">
-    <img height="60" src="https://user-images.githubusercontent.com/58954229/144369383-d6eda64c-b003-491c-a102-11e67d80c1f1.png"/>
+    <img height="80" src="https://user-images.githubusercontent.com/58954229/144369383-d6eda64c-b003-491c-a102-11e67d80c1f1.png"/>
 <h1 align="center">Laravel Chat</h1>
 </p>
 
