@@ -6,44 +6,62 @@
 ## Laravel Live chatting web app with pusher
 <p align="center">
 <img src="https://user-images.githubusercontent.com/58954229/144369233-56820d2b-d800-4e82-ad43-e81902954879.png"/>
-<img src="https://img.shields.io/packagist/l/laravel/framework" alt="License">
+    <img src="https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white"/>
+    <img src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D"/>
+    <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/>
 </p>
+
 
 ##
 
 ## Features 📝
 
-🟣 Modern UI and responsive design.
+🟣 &nbsp;&nbsp; Modern UI and responsive design.
 <br/>
-🟣 Real-time messaging events and invitations.
+🟣 &nbsp;&nbsp; Real-time messaging events and invitations.
 <br/>
-🟣 Invite other users to new chat rooms.
+🟣 &nbsp;&nbsp; Invite other users to new chat rooms.
 <br/>
-🟣 Real-time notifications and alerts.
+🟣 &nbsp;&nbsp; Real-time notifications and alerts.
+<br/>
+🟣 &nbsp;&nbsp; Private and public chat rooms.
+
+##
 
 ## Getting Started 🚀
 ### Installation:
-1. Clone Repo.
-2. Install composer dependencies 
-```composer install```.
-3. Install NPM dependencies
-```npm install && npm run dev```.
-4. Create a copy of .env file
-```cp .env.example .env```.
-5. Generate an app encryption key
-```php artisan key:generate```.
-6. Create 'chat' database and run 
-```php artisan migrate --seed```.
-7. Sign up / sign in to pusher from [pusher website](https://pusher.com/).
-8. Add your pusher credentials to .env by following pusher getting started document.
-9. Run project using 
-```php artian serve```and ```npm run  watch```.
+After cloning the repository:
 
+```ruby
+# Install composer dependencies
+composer install
+
+# Install NPM dependencies
+npm install && npm run dev
+
+# Create a copy of .env file
+cp .env.example .env
+
+# Generate an app encryption key
+php artisan key:generate
+
+# Create 'chat' database and run
+php artisan migrate --seed
+
+# Sign up / sign in to pusher.com
+
+# Add your pusher credentials to .env by following pusher getting started document
+
+# Run project using 
+php artian serve
+npm run watch
+```
 ### Technical Stack:
 - Laravel (v8.1)
 - Vue js (v3.0.5)
 - Tailwindcss (v2.0.1)
 - Inertia (v0.10.0)
+
 ### Packages/Libraries Used:
 - Laravel Actions (v2.2)
 - Laravel Jetstream Inertia (v2.4)
