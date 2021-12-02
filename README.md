@@ -1,28 +1,25 @@
 <p align="center">
-    <img height="60" style="margin-bottom: -40px" src="https://user-images.githubusercontent.com/58954229/144369383-d6eda64c-b003-491c-a102-11e67d80c1f1.png"/>
-</p>
+    <img height="60" src="https://user-images.githubusercontent.com/58954229/144369383-d6eda64c-b003-491c-a102-11e67d80c1f1.png"/>
 <h1 align="center">Laravel Chat</h1>
-<hr/>
+</p>
 
 ## Laravel Live chatting web app with pusher
-<hr/>
-
-<img src="https://user-images.githubusercontent.com/58954229/144369233-56820d2b-d800-4e82-ad43-e81902954879.png"/>
 <p align="center">
+<img src="https://user-images.githubusercontent.com/58954229/144369233-56820d2b-d800-4e82-ad43-e81902954879.png"/>
 <img src="https://img.shields.io/packagist/l/laravel/framework" alt="License">
 </p>
-<hr/>
 
-## Features
-<hr/>
+##
+
+## Features 📝
+
 🟣 Modern UI and responsive design.
 <br/>
 🟣 Real-time messaging events and invitations.
 <br/>
 🟣 Invite other users to new chat rooms.
 
-## Getting Started
-<hr/>
+## Getting Started 🚀
 
 ### Installation:
 1. Clone Repo.
@@ -54,9 +51,6 @@
 - Pusher js (v7.0.3)
 - Vue Toastification (v2.0)
 
-<hr/>
-
-## License
-<hr/>
-
+##
+## License ⚖️
 The Laravel Chat is open-sourced website licensed under the [MIT license](https://opensource.org/licenses/MIT).
