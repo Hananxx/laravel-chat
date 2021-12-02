@@ -1,9 +1,8 @@
-<div style="display: flex; align-items: center;">
-    <img height="60" style="margin-bottom: -25px; margin-right: 6px;" src="https://user-images.githubusercontent.com/58954229/144369383-d6eda64c-b003-491c-a102-11e67d80c1f1.png"/>
-    <h1 align="center">Laravel Chat</h1>
-</div>
+<p align="center">
+    <img height="60" style="margin-bottom: -40px" src="https://user-images.githubusercontent.com/58954229/144369383-d6eda64c-b003-491c-a102-11e67d80c1f1.png"/>
+</p>
+<h1 align="center">Laravel Chat</h1>
 <hr/>
-
 
 ## Laravel Live chatting web app with pusher
 <hr/>
